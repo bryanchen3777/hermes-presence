@@ -164,6 +164,8 @@ class TestMinimaxM3Provider(unittest.TestCase):
             captured["data"] = json.loads(req.data.decode("utf-8"))
             mock_resp = MagicMock()
             mock_resp.read.return_value = json.dumps({
+                "type": "message",
+                "role": "assistant",
                 "content": [{"type": "text", "text": "Mocked response"}]
             }).encode("utf-8")
             mock_resp.__enter__ = lambda s: s
