@@ -8,12 +8,14 @@ from .plugin import (
 from .tools import (
     validate_soul, SoulValidationResult, format_report,
     YuaSoulLoader, BuiltPrompt,
+    YuaMemoryAdapter, AdapterResult,
 )
 from .agent import (
     YuaAgent, AgentConfig, AgentTurn,
     MockLLMProvider, LLMProvider,
     extract_fact_heuristic, FactExtractionResult,
 )
+from .llm_providers import MinimaxM3Provider, CachedLLMProvider
 
 __all__ = [
     # plugin
@@ -22,8 +24,11 @@ __all__ = [
     # tools
     "validate_soul", "SoulValidationResult", "format_report",
     "YuaSoulLoader", "BuiltPrompt",
+    "YuaMemoryAdapter", "AdapterResult",
     # agent
     "YuaAgent", "AgentConfig", "AgentTurn",
     "MockLLMProvider", "LLMProvider",
     "extract_fact_heuristic", "FactExtractionResult",
+    # llm providers
+    "MinimaxM3Provider", "CachedLLMProvider",
 ]
