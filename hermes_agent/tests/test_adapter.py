@@ -130,7 +130,7 @@ class TestMinimaxM3Provider(unittest.TestCase):
         from hermes_agent import MinimaxM3Provider
         p = MinimaxM3Provider(api_key="test-key-12345")
         self.assertEqual(p.api_key, "test-key-12345")
-        self.assertEqual(p.model, "MiniMax-M3")
+        self.assertEqual(p.model, "minimax-M2.7")
         self.assertEqual(p.base_url, "https://api.minimax.io/anthropic")
 
     def test_env_var_api_key(self):
@@ -180,7 +180,7 @@ class TestMinimaxM3Provider(unittest.TestCase):
         self.assertEqual(response, "Mocked response")
         self.assertEqual(captured["method"], "POST")
         self.assertEqual(captured["url"], "https://api.minimax.io/anthropic/v1/messages")
-        self.assertEqual(captured["data"]["model"], "MiniMax-M3")
+        self.assertEqual(captured["data"]["model"], "minimax-M2.7")
         self.assertEqual(captured["data"]["system"], "system prompt")
         self.assertEqual(captured["data"]["messages"][-1]["content"], "user message")
         self.assertEqual(captured["headers"].get("x-api-key"), "test-key")

@@ -22,10 +22,12 @@ from hermes_agent.agent import LLMProvider
 # ─────────────────────────────────────────────────────────────
 
 class MinimaxM3Provider:
-    """Minimax M3（Anthropic Messages API 相容）"""
+    """Minimax 雲端模型 provider（M2.7 / M3，Anthropic Messages API 相容）
+    環境變數 MINIMAX_API_KEY 是required。
+    """
 
     BASE_URL = "https://api.minimax.io/anthropic"
-    DEFAULT_MODEL = "MiniMax-M3"
+    DEFAULT_MODEL = "minimax-M2.7"
     MAX_TOKENS = 1000
 
     def __init__(
@@ -189,7 +191,7 @@ class LocalLLMProvider:
                             "render_", "full_temporal_block", "inner_life_block",
                             "Fact(", "FactType.", "Visibility.",
                             "add_fact", "memory_core.",
-                            "tool_call", "tool_code", "<tool_",
+                            "tool_call", "tool_code", "<tool_", "</tool_",
                             "```python", "```",
                             "subject=", "predicate=", "object=",
                             '"type":', '"subject":', '"predicate":', '"object":',
