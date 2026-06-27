@@ -12,18 +12,25 @@ sys.path.insert(0, HERE)
 # 收集所有測試 — 直接手動載入每個 test_*.py
 import importlib
 
-TESTS_DIR = os.path.join(HERE, "temporal_awareness", "tests")
+TEST_DIRS = [
+    os.path.join(HERE, "temporal_awareness", "tests"),
+    os.path.join(HERE, "hermes_agent", "tests"),
+    os.path.join(HERE, "inner_life", "tests"),
+]
+
 loader = unittest.TestLoader()
 suite = unittest.TestSuite()
 
-for fname in sorted(os.listdir(TESTS_DIR)):
-    if fname.startswith("test_") and fname.endswith(".py"):
-        # 把 tests/ 加到 path 讓 import "test_clock" 等能運作
-        sys.path.insert(0, TESTS_DIR)
-        modname = fname[:-3]
-        mod = importlib.import_module(modname)
-        suite.addTests(loader.loadTestsFromModule(mod))
-        sys.path.pop(0)
+for test_dir in TEST_DIRS:
+    if not os.path.isdir(test_dir):
+        continue
+    for fname in sorted(os.listdir(test_dir)):
+        if fname.startswith("test_") and fname.endswith(".py"):
+            sys.path.insert(0, test_dir)
+            modname = fname[:-3]
+            mod = importlib.import_module(modname)
+            suite.addTests(loader.loadTestsFromModule(mod))
+            sys.path.pop(0)
 
 runner = unittest.TextTestRunner(verbosity=2)
 result = runner.run(suite)
